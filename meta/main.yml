@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  author: Andrew Rothstein
+  description: installs and configurates maven
+  company: BlackRock
+  license:
+    - MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: MacOSX
+      versions:
+        - all
+  galaxy_tags:
+    - development
+
+dependencies:
+  - role: andrewrothstein.java-oracle-jdk
+    version: v1.0.1
