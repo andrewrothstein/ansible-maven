@@ -285,7 +285,7 @@ under the License.
      |   <groupId>org.myco.myplugins</groupId>
      |   <artifactId>myplugin</artifactId>
      |   
-     |   <configuration>
+s     |   <configuration>
      |     <tomcatLocation>${tomcatPath}</tomcatLocation>
      |   </configuration>
      | </plugin>
@@ -312,10 +312,10 @@ under the License.
 {% endif %}    
   </profiles>
 
-  {% if maven_active_profiles is defined %}
+  {% if maven_profiles is defined %}
   <activeProfiles>
-  {% for ap in maven_active_profiles %}
-  <activeProfile>{{ap}}</activeProfile>
+  {% for mp in maven_profiles %}
+  <activeProfile>{{mp.active | default(True)}}</activeProfile>
   {% endfor %}
   </activeProfiles>
   {% endif %}

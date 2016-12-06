@@ -1,2 +1,32 @@
 ---
-# defaults file for maven
+maven_profiles:
+  - id: profile-id
+    active: True
+    repos:
+      - id: central
+        name: repo
+        snapshots:
+          enabled: False
+        url: https://example.com/blah/libs-releases
+      - id: snapshots
+        name: repo
+        snapshots:
+          enabled: True
+        url: https://example.com/blah/lib-snapshots
+    pluginRepos:
+      - id: central
+        name: repo
+        snapshots:
+          enabled: False
+        url: https://example.com/blah/plugins-releases
+      - id: snapshots
+        name: repo
+        snapshots:
+          enabled: True
+        url: https://example.com/blah/plugins-snapshots
+  - id: some-profile-id
+    active: True
+    properties:
+      foo: bar
+      bar: baz
+      ding: bat
