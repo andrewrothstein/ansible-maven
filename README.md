@@ -1,7 +1,7 @@
-username.rolename
+andrewrothstein.maven
 =========
 
-A brief description of the username.rolename goes here.
+Installs and configures [maven](https://maven.apache.org/)
 
 Requirements
 ------------
@@ -24,7 +24,7 @@ Example Playbook
 ```yml
 - hosts: servers
   roles:
-    - username.rolename
+    - andrewrothstein.maven
 ```
 
 License
