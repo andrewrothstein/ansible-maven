@@ -2,9 +2,11 @@
 - name: install pkgs...
   become: yes
   become_user: root
-  package: name={{item}} state=present
   with_items:
     - maven
+  package:
+    name: '{{item}}'
+    state: present
 
 - name: resolve platform specific vars
   include_vars: "{{item}}"
@@ -20,7 +22,7 @@
     - settings.xml
     - toolchains.xml
     - m2.conf
-  template: >
-    src={{item}}.j2
-    dest={{java_build_tools_maven_settings_dir}}/{{item}}
-    mode=0644
+  template:
+    src: '{{item}}.j2'
+    dest: '{{java_build_tools_maven_settings_dir}}/{{item}}'
+    mode: 0644
