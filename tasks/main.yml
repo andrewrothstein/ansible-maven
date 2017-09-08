@@ -1,28 +1,38 @@
 ---
-- name: install pkgs...
+- name: download...
   become: yes
   become_user: root
-  with_items:
-    - maven
-  package:
-    name: '{{item}}'
-    state: present
+  get_url:
+    url: '{{maven_tgz_url}}'
+    dest: /tmp/{{maven_tgz}}
+    mode: 0644
 
-- name: resolve platform specific vars
-  include_vars: "{{item}}"
-  with_first_found:
-    - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
-    - "{{ansible_distribution}}.yml"
-    - "{{ansible_os_family}}.yml"
+- name: unarchive...
+  become: yes
+  become_user: root
+  unarchive:
+    src: /tmp/{{maven_tgz}}
+    dest: '{{maven_parent_install_dir}}'
+    creates: '{{maven_install_dir}}'
+
+- name: link...
+  become: yes
+  become_user: root
+  file:
+    src: '{{maven_install_dir}}'
+    dest: '{{maven_link_dir}}'
+    state: link
 
 - name : configurate maven...
   become: yes
   become_user: root
   with_items:
-    - settings.xml
-    - toolchains.xml
-    - m2.conf
+    - f: settings.xml
+    - f: toolchains.xml
+    - f: m2.conf
+    - f: maven.sh
+      d: /etc/profile.d
   template:
-    src: '{{item}}.j2'
-    dest: '{{java_build_tools_maven_settings_dir}}/{{item}}'
-    mode: 0644
+    src: '{{item.f}}.j2'
+    dest: '{{item.d|default(maven_conf_dir)}}/{{item.f}}'
+    mode: '{{item.m|default("0644")}}'

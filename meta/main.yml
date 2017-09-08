@@ -16,9 +16,20 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
+    - name: Debian
+      versions:
+        - all
+    - name: Archlinux
+      versions:
+        - all
+    - name: Alpine
+      versions:
+        - all
   galaxy_tags:
     - development
 
 dependencies:
-  - role: andrewrothstein.java-oracle-jdk
-    version: v2.0.3
+  - src: andrewrothstein.unarchive-deps
+    version: v1.0.9
+  - src: andrewrothstein.java-oracle-jdk
+    version: v2.0.4

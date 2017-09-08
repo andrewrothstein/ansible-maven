@@ -1,3 +1,0 @@
----
-java_build_tools_maven_settings_dir : /etc/maven
-java_build_tools_jdkhome: /usr/java/jdk1.8.0

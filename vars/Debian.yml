@@ -1,3 +1,0 @@
----
-java_build_tools_maven_settings_dir : /usr/share/maven/conf
-java_build_tools_jdkhome: /usr/lib/jvm/java-8-oracle

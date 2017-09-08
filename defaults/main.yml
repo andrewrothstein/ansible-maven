@@ -1,4 +1,8 @@
 ---
+maven_ver: '3.5.0'
+maven_mirror: http://archive.apache.org/dist/maven/maven-3
+maven_parent_install_dir: /usr/local
+
 maven_profiles:
   - id: profile-id
     active: True
@@ -30,3 +34,11 @@ maven_profiles:
       foo: bar
       bar: baz
       ding: bat
+
+maven_toolchains:
+  - ty: jdk
+    provides:
+      version: 1.8
+      vendor: sun
+    configuration:
+      jdkHome: /usr/local/java
