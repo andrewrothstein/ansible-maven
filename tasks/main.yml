@@ -14,7 +14,7 @@
         url: '{{maven_tgz_url}}'
         dest: /tmp/{{maven_tgz}}
         checksum: '{{maven_checksum}}'
-        mode: 0644e
+        mode: 0644
     - name: unarchive...
       become: yes
       become_user: root
