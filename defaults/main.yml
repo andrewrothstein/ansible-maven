@@ -1,7 +1,10 @@
 ---
-maven_ver: '3.5.0'
+maven_ver: '3.5.3'
 maven_mirror: http://archive.apache.org/dist/maven/maven-3
 maven_parent_install_dir: /usr/local
+maven_checksums:
+  # http://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz.sha256
+  '3.5.3': sha256:b52956373fab1dd4277926507ab189fb797b3bc51a2a267a193c931fffad8408
 
 maven_profiles:
   - id: profile-id

@@ -1,19 +1,34 @@
 ---
-- name: download...
+- name: look for maven installation...
   become: yes
-  become_user: root
-  get_url:
-    url: '{{maven_tgz_url}}'
-    dest: /tmp/{{maven_tgz}}
-    mode: 0644
-
-- name: unarchive...
-  become: yes
-  become_user: root
-  unarchive:
-    src: /tmp/{{maven_tgz}}
-    dest: '{{maven_parent_install_dir}}'
-    creates: '{{maven_install_dir}}'
+  stat:
+    path: '{{maven_install_dir}}'
+  changed_when: false
+  register: maven_binary
+- when: not maven_binary.stat.exists
+  block:
+    - name: download...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{maven_tgz_url}}'
+        dest: /tmp/{{maven_tgz}}
+        checksum: '{{maven_checksum}}'
+        mode: 0644e
+    - name: unarchive...
+      become: yes
+      become_user: root
+      unarchive:
+        src: /tmp/{{maven_tgz}}
+        dest: '{{maven_parent_install_dir}}'
+        creates: '{{maven_install_dir}}'
+  always:
+    - name: cleanup
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{maven_tgz}}
+        state: absent
 
 - name: link...
   become: yes
