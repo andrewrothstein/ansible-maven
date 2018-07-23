@@ -205,41 +205,41 @@ under the License.
       <id>{{p.id}}</id>
       {% if 'repos' in p %}
       <repositories>
-	{% for r in p.repos %}
-	<repository>
-	  <id>{{r.id}}</id>
-	  <name>{{r.name}}</name>
-	  {% if 'snapshots' in r %}
-	  <snapshots>
-	    <enabled>{{r.snapshots.enabled|to_json}}</enabled>
-	  </snapshots>
-	  {% endif %}
-	  <url>{{r.url}}</url>
-	</repository>
-	{% endfor %}
+	      {% for r in p.repos %}
+	      <repository>
+	        <id>{{r.id}}</id>
+	        <name>{{r.name}}</name>
+	        {% if 'snapshots' in r %}
+	        <snapshots>
+	          <enabled>{{r.snapshots.enabled|to_json}}</enabled>
+	        </snapshots>
+	        {% endif %}
+	        <url>{{r.url}}</url>
+	      </repository>
+	      {% endfor %}
       </repositories>
       {% endif %}
       {% if 'pluginRepos' in p %}
       <pluginRepositories>
-	{% for pl in p.pluginRepos %}
-	<pluginRepository>
-	  <id>{{pl.id}}</id>
-	  <name>{{pl.name}}</name>
-	  {% if 'snapshots' in pl %}
-	  <snapshots>
-	    <enabled>{{pl.snapshots.enabled|to_json}}</enabled>
-	  </snapshots>
-	  {% endif %}
-	  <url>{{pl.url}}</url>
-	</pluginRepository>
-	{% endfor %}
+	      {% for pl in p.pluginRepos %}
+	      <pluginRepository>
+	        <id>{{pl.id}}</id>
+	        <name>{{pl.name}}</name>
+	        {% if 'snapshots' in pl %}
+	        <snapshots>
+	          <enabled>{{pl.snapshots.enabled|to_json}}</enabled>
+	        </snapshots>
+	        {% endif %}
+	        <url>{{pl.url}}</url>
+	      </pluginRepository>
+	      {% endfor %}
       </pluginRepositories>
       {% endif %}
-      {% if 'properties' in p %}
+      {% if 'props' in p %}
       <properties>
-	{% for k,v in p.properties.iteritems() %}
-	<{{k}}>{{v}}</{{k}}>
-	{% endfor %}
+	      {% for k,v in p.properties.items() %}
+	      <{{k}}>{{v}}</{{k}}>
+	      {% endfor %}
       </properties>
       {% endif %}
     </profile>
