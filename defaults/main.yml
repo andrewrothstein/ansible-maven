@@ -47,3 +47,5 @@ maven_toolchains:
       vendor: sun
     configuration:
       jdkHome: /usr/local/java
+
+maven_timeout_seconds: 60
