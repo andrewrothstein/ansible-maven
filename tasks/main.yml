@@ -14,6 +14,7 @@
         url: '{{maven_tgz_url}}'
         dest: /tmp/{{maven_tgz}}
         checksum: '{{maven_checksum}}'
+        timeout: '{{maven_timeout_seconds}}'
         mode: 0644
     - name: unarchive...
       become: yes
