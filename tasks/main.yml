@@ -39,7 +39,7 @@
     dest: '{{maven_link_dir}}'
     state: link
 
-- name : configurate maven...
+- name: configurate maven...
   become: yes
   become_user: root
   with_items:
