@@ -20,6 +20,7 @@
       become: yes
       become_user: root
       unarchive:
+        remote_src: yes
         src: /tmp/{{maven_tgz}}
         dest: '{{maven_parent_install_dir}}'
         creates: '{{maven_install_dir}}'
