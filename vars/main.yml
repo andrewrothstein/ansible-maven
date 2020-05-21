@@ -1,10 +1,10 @@
 ---
 # vars file for maven
-maven_name: apache-maven-{{maven_ver}}
-maven_tgz: '{{maven_name}}-bin.tar.gz'
-maven_tgz_url: '{{maven_mirror}}/{{maven_ver}}/binaries/{{maven_tgz}}'
-maven_checksum: '{{maven_checksums[maven_ver]}}'
-maven_install_dir: '{{maven_parent_install_dir}}/{{maven_name}}'
-maven_link_dir: '{{maven_parent_install_dir}}/maven'
+maven_name: apache-maven-{{ maven_ver }}
+maven_tgz: '{{ maven_name }}-bin.tar.gz'
+maven_tgz_url: '{{ maven_mirror }}/{{ maven_ver }}/binaries/{{ maven_tgz }}'
+maven_checksum: '{{ maven_checksums[maven_ver] }}'
+maven_install_dir: '{{ maven_parent_install_dir }}/{{ maven_name }}'
+maven_link_dir: '{{ maven_parent_install_dir }}/maven'
 
-maven_conf_dir: '{{maven_install_dir}}/conf'
+maven_conf_dir: '{{ maven_install_dir }}/conf'
