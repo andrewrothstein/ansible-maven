@@ -315,7 +315,9 @@ s     |   <configuration>
   {% if maven_profiles is defined %}
   <activeProfiles>
   {% for mp in maven_profiles %}
-  <activeProfile>{{mp.active | default(True)}}</activeProfile>
+  {% if mp.active %}
+  <activeProfile>{{ mp.id }}</activeProfile>
+  {% endif %}
   {% endfor %}
   </activeProfiles>
   {% endif %}
