@@ -43,6 +43,15 @@ maven_toolchains:
     configuration:
       jdkHome: /usr/local/java
 
+maven_servers:
+  - id: server001
+    username: my_login
+    password: my_password
+    privateKey: ${user.home}/.ssh/id_dsa
+    passphrase: some_passphrase
+    filePermissions: 664
+    directoryPermissions: 775
+
 maven_timeout_seconds: 60
 
 maven_checksums:

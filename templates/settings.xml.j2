@@ -127,6 +127,21 @@ under the License.
    | This is a list of authentication profiles, keyed by the server-id used within the system.
    | Authentication profiles can be used whenever maven must make a connection to a remote server.
    |-->
+{%+ if maven_servers is defined %}
+  <servers>
+  {%+ for ms in maven_servers %}
+    <server>
+    {%+ if ms.id is defined %}<id>{{ ms.id }}</id>{% endif %}
+    {%+ if ms.username is defined %}<username>{{ ms.username }}</username>{% endif %}
+    {%+ if ms.password is defined %}<password>{{ ms.password }}</password>{% endif %}
+    {%+ if ms.privateKey is defined %}<privateKey>{{ ms.privateKey }}</privateKey>{% endif %}
+    {%+ if ms.passphrase is defined %}<passphrase>{{ ms.passphrase }}</passphrase>{% endif %}
+    {%+ if ms.filePermissions is defined %}<filePermissions>{{ ms.filePermissions }}</filePermissions>{% endif %}
+    {%+ if ms.directoryPermissions is defined %}<directoryPermissions>{{ ms.directoryPermissions }}</directoryPermissions>{% endif %}
+    </server>
+  {%+ endfor %}
+  </servers>
+{%+ else %}
   <servers>
     <!-- server
      | Specifies the authentication information to use when connecting to a particular server, identified by
@@ -150,6 +165,7 @@ under the License.
     </server>
     -->
   </servers>
+{% endif %}
 
   <!-- mirrors
    | This is a list of mirrors to be used in downloading artifacts from remote repositories.
