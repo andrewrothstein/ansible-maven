@@ -1,6 +1,10 @@
 ---
-maven_ver: '3.6.3'
-maven_mirror: http://archive.apache.org/dist/maven/maven-3
+maven_ver:
+  major: 3
+  minor: 6
+  patch: 3
+
+maven_mirror: http://archive.apache.org/dist/maven
 maven_parent_install_dir: /usr/local
 
 maven_profiles:
@@ -61,6 +65,8 @@ maven_checksums:
   '3.5.4': sha256:ce50b1c91364cb77efe3776f756a6d92b76d9038b0a0782f7d53acf1e997a14d
   # http://archive.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz.sha512
   '3.6.0': sha512:fae9c12b570c3ba18116a4e26ea524b29f7279c17cbaadc3326ca72927368924d9131d11b9e851b8dc9162228b6fdea955446be41207a5cfc61283dd8a561d2f
+  # http://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz.sha512
+  '3.6.1': sha512:b4880fb7a3d81edd190a029440cdf17f308621af68475a4fe976296e71ff4a4b546dd6d8a58aaafba334d309cc11e638c52808a4b0e818fc0fd544226d952544
   # http://archive.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz.sha512
   '3.6.2': sha512:d941423d115cd021514bfd06c453658b1b3e39e6240969caf4315ab7119a77299713f14b620fb2571a264f8dff2473d8af3cb47b05acf0036fc2553199a5c1ee
   # http://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz.sha512

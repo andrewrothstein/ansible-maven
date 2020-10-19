@@ -1,5 +1,5 @@
 ---
-- name: look for maven installation...
+- name: look for maven installation in {{ maven_install_dir }}...
   become: yes
   stat:
     path: '{{ maven_install_dir }}'
@@ -7,32 +7,31 @@
   register: maven_binary
 - when: not maven_binary.stat.exists
   block:
-    - name: download...
+    - name: downloading {{ maven_tgz_url }} to {{ maven_tmp_tgz }}...
       become: yes
       become_user: root
       get_url:
         url: '{{ maven_tgz_url }}'
-        dest: /tmp/{{ maven_tgz }}
+        dest: '{{ maven_tmp_tgz }}'
         checksum: '{{ maven_checksum }}'
         timeout: '{{ maven_timeout_seconds }}'
         mode: 0644
-    - name: unarchive...
+    - name: unarchiving {{ maven_tmp_tgz }} to {{ maven_parent_install_dir }}...
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
-        src: /tmp/{{ maven_tgz }}
+        src: '{{ maven_tmp_tgz }}'
         dest: '{{ maven_parent_install_dir }}'
         creates: '{{ maven_install_dir }}'
   always:
-    - name: cleanup
+    - name: cleanup {{ maven_tmp_tgz }}
       become: yes
       become_user: root
       file:
-        path: /tmp/{{ maven_tgz }}
+        path: '{{ maven_tmp_tgz }}'
         state: absent
-
-- name: link...
+- name: link {{ maven_link_dir }} to {{ maven_install_dir }}...
   become: yes
   become_user: root
   file:
@@ -40,7 +39,7 @@
     dest: '{{ maven_link_dir }}'
     state: link
 
-- name: configurate maven...
+- name: configurating maven...
   become: yes
   become_user: root
   with_items:
