@@ -1,0 +1,57 @@
+---
+- hosts: all
+  vars:
+    maven_config:
+      profiles:
+        - id: profile-id
+          active: True
+          repos:
+            - id: central
+              name: repo
+              snapshots:
+                enabled: False
+              url: https://example.com/blah/libs-releases
+            - id: snapshots
+              name: repo
+              snapshots:
+                enabled: True
+              url: https://example.com/blah/lib-snapshots
+          pluginRepos:
+            - id: central
+              name: repo
+              snapshots:
+                enabled: False
+              url: https://example.com/blah/plugins-releases
+            - id: snapshots
+              name: repo
+              snapshots:
+                enabled: True
+              url: https://example.com/blah/plugins-snapshots
+        - id: some-profile-id
+          active: True
+          properties:
+            foo: bar
+            bar: baz
+            ding: bat
+      toolchains:
+        - ty: jdk
+          provides:
+            version: 1.8
+            vendor: sun
+          configuration:
+            jdkHome: /usr/local/java
+      servers:
+        - id: server001
+          username: my_login
+          password: my_password
+          privateKey: ${user.home}/.ssh/id_dsa
+          passphrase: some_passphrase
+          filePermissions: 664
+          directoryPermissions: 775
+  roles:
+    - role: '{{ playbook_dir }}'
+  tasks:
+    - command: sh -l -c '/usr/local/maven/bin/mvn --version'
+      register: maven_test_output
+    - debug:
+        msg: '{{ maven_test_output.stdout }}'

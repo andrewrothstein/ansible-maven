@@ -127,9 +127,9 @@ under the License.
    | This is a list of authentication profiles, keyed by the server-id used within the system.
    | Authentication profiles can be used whenever maven must make a connection to a remote server.
    |-->
-{%+ if maven_servers is defined %}
+{%+ if maven_config.servers is defined %}
   <servers>
-  {%+ for ms in maven_servers %}
+  {%+ for ms in maven_config.servers %}
     <server>
     {%+ if ms.id is defined %}<id>{{ ms.id }}</id>{% endif %}
     {%+ if ms.username is defined %}<username>{{ ms.username }}</username>{% endif %}
@@ -215,8 +215,8 @@ under the License.
    |
    |-->
   <profiles>
-    {% if maven_profiles is defined %}
-    {% for p in maven_profiles %}
+    {% if maven_config.profiles is defined %}
+    {% for p in maven_config.profiles %}
     <profile>
       <id>{{p.id}}</id>
       {% if 'repos' in p %}
@@ -301,7 +301,7 @@ under the License.
      |   <groupId>org.myco.myplugins</groupId>
      |   <artifactId>myplugin</artifactId>
      |   
-s     |   <configuration>
+     |   <configuration>
      |     <tomcatLocation>${tomcatPath}</tomcatLocation>
      |   </configuration>
      | </plugin>
@@ -328,9 +328,9 @@ s     |   <configuration>
 {% endif %}    
   </profiles>
 
-  {% if maven_profiles is defined %}
+  {% if maven_config.profiles is defined %}
   <activeProfiles>
-  {% for mp in maven_profiles %}
+  {% for mp in maven_config.profiles %}
   {% if mp.active %}
   <activeProfile>{{ mp.id }}</activeProfile>
   {% endif %}

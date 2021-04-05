@@ -14,7 +14,7 @@
         url: '{{ maven_tgz_url }}'
         dest: '{{ maven_tmp_tgz }}'
         checksum: '{{ maven_checksum }}'
-        timeout: '{{ maven_timeout_seconds }}'
+        timeout: '{{ maven_timeout_seconds | default(60) }}'
         mode: 0644
     - name: unarchiving {{ maven_tmp_tgz }} to {{ maven_parent_install_dir }}...
       become: yes
@@ -42,6 +42,7 @@
 - name: configurating maven...
   become: yes
   become_user: root
+  when: maven_config is defined
   with_items:
     - f: settings.xml
     - f: toolchains.xml

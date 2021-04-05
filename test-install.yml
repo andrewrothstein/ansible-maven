@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+    - role: '{{ playbook_dir }}'
+  tasks:
+    - command: sh -l -c '/usr/local/maven/bin/mvn --version'
+      register: maven_test_output
+    - debug:
+        msg: '{{ maven_test_output.stdout }}'
