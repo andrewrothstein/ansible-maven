@@ -1,6 +1,6 @@
 andrewrothstein.maven
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-maven.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-maven)
+![Build Status](https://github.com/andrewrothstein/ansible-maven/actions/workflows/build.yml/badge.svg)
 
 Installs and configures [maven](https://maven.apache.org/)
 
