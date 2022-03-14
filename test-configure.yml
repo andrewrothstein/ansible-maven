@@ -4,31 +4,31 @@
     maven_config:
       profiles:
         - id: profile-id
-          active: True
+          active: true
           repos:
             - id: central
               name: repo
               snapshots:
-                enabled: False
+                enabled: false
               url: https://example.com/blah/libs-releases
             - id: snapshots
               name: repo
               snapshots:
-                enabled: True
+                enabled: true
               url: https://example.com/blah/lib-snapshots
           pluginRepos:
             - id: central
               name: repo
               snapshots:
-                enabled: False
+                enabled: false
               url: https://example.com/blah/plugins-releases
             - id: snapshots
               name: repo
               snapshots:
-                enabled: True
+                enabled: true
               url: https://example.com/blah/plugins-snapshots
         - id: some-profile-id
-          active: True
+          active: true
           properties:
             foo: bar
             bar: baz
