@@ -47,9 +47,18 @@
     - f: settings.xml
     - f: toolchains.xml
     - f: m2.conf
+  template:
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d | default(maven_conf_dir) }}/{{ item.f }}'
+    mode: '{{ item.m | default("0644") }}'
+
+- name: adding maven to the login shell PATH
+  become: true
+  become_user: root
+  with_items:
     - f: maven.sh
       d: /etc/profile.d
   template:
     src: '{{ item.f }}.j2'
-    dest: '{{ item.d | default(maven_conf_dir) }}/{{ item.f }}'
+    dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m | default("0644") }}'
