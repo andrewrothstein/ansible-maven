@@ -1,8 +1,5 @@
 ---
 dependencies:
-- andrewrothstein.unarchive-deps
-- openjdk_app: jdk
-  role: andrewrothstein.temurin
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
