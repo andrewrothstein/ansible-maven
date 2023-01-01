@@ -14,4 +14,4 @@ dl_ver () {
     printf "  '%s': sha%s:%s\n" $ver $shatype $(curl -sSL $url | awk '{print $1}')
 }
 
-dl_ver 3 8 6 512
+dl_ver 3 8 7 512
