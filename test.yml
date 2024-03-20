@@ -1,3 +1,5 @@
 ---
-- import_playbook: test-install.yml
-- import_playbook: test-configure.yml
+- name: Testing andrewrothstein.maven (install)
+  ansible.builtin.import_playbook: test-install.yml
+- name: Testing andrewrothstein.maven (configure)
+  ansible.builtin.import_playbook: test-configure.yml
