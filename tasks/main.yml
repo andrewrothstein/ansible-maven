@@ -1,51 +1,54 @@
 ---
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- include_role:
+- name: Installing andrewrothstein.temurin
+  ansible.builtin.include_role:
     name: andrewrothstein.temurin
   vars:
     openjdk_app: jdk
-- name: look for maven installation in {{ maven_install_dir }}...
+- name: Look for maven installation in {{ maven_install_dir }}...
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ maven_install_dir }}'
   changed_when: false
   register: maven_binary
-- when: not maven_binary.stat.exists
+- name: Downloading and installing maven
+  when: not maven_binary.stat.exists
   block:
-    - name: downloading {{ maven_tgz_url }} to {{ maven_tmp_tgz }}...
+    - name: Downloading {{ maven_tgz_url }} to {{ maven_tmp_tgz }}...
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ maven_tgz_url }}'
         dest: '{{ maven_tmp_tgz }}'
         checksum: '{{ maven_checksum }}'
         timeout: '{{ maven_timeout_seconds | default(60) }}'
-        mode: 0644
-    - name: unarchiving {{ maven_tmp_tgz }} to {{ maven_parent_install_dir }}...
+        mode: '644'
+    - name: Unarchiving {{ maven_tmp_tgz }} to {{ maven_parent_install_dir }}...
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ maven_tmp_tgz }}'
         dest: '{{ maven_parent_install_dir }}'
         creates: '{{ maven_install_dir }}'
   always:
-    - name: cleanup {{ maven_tmp_tgz }}
+    - name: Cleanup {{ maven_tmp_tgz }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ maven_tmp_tgz }}'
         state: absent
-- name: link {{ maven_link_dir }} to {{ maven_install_dir }}...
+- name: Link {{ maven_link_dir }} to {{ maven_install_dir }}...
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ maven_install_dir }}'
     dest: '{{ maven_link_dir }}'
     state: link
 
-- name: configurating maven...
+- name: Configurating maven...
   become: true
   become_user: root
   when: maven_config is defined
@@ -53,18 +56,18 @@
     - f: settings.xml
     - f: toolchains.xml
     - f: m2.conf
-  template:
+  ansible.builtin.template:
     src: '{{ item.f }}.j2'
     dest: '{{ item.d | default(maven_conf_dir) }}/{{ item.f }}'
-    mode: '{{ item.m | default("0644") }}'
+    mode: '{{ item.m | default("644") }}'
 
-- name: adding maven to the login shell PATH
+- name: Adding maven to the login shell PATH
   become: true
   become_user: root
   with_items:
     - f: maven.sh
       d: /etc/profile.d
-  template:
+  ansible.builtin.template:
     src: '{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
-    mode: '{{ item.m | default("0644") }}'
+    mode: '{{ item.m | default("644") }}'

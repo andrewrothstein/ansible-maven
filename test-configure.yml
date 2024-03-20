@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.maven (configure)
+  hosts: all
   vars:
     maven_config:
       profiles:
@@ -51,8 +52,10 @@
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: sh -l -c '/usr/local/maven/bin/mvn --version'
+    - name: Executing 'mvn --version'
+      ansible.builtin.command: sh -lc 'mvn --version'
+      changed_when: false
       register: maven_test_output
-    - name: mvn --version
-      debug:
+    - name: Output of 'mvn --version'
+      ansible.builtin.debug:
         msg: '{{ maven_test_output.stdout }}'

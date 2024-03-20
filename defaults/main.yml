@@ -6,57 +6,57 @@ maven_ver:
 
 maven_mirror: http://archive.apache.org/dist/maven
 maven_parent_install_dir: /usr/local
-#maven_timeout_seconds: 60
+# maven_timeout_seconds: 60
 
 ## Example configuration for maven covering the generation of m2.conf
 ## settings.xml and toolchains.xml
-#maven_config:
-#  profiles:
-#    - id: profile-id
-#      active: True
-#      repos:
-#        - id: central
-#          name: repo
-#          snapshots:
-#            enabled: False
-#          url: https://example.com/blah/libs-releases
-#        - id: snapshots
-#          name: repo
-#          snapshots:
-#            enabled: True
-#          url: https://example.com/blah/lib-snapshots
-#      pluginRepos:
-#        - id: central
-#          name: repo
-#          snapshots:
-#            enabled: False
-#          url: https://example.com/blah/plugins-releases
-#        - id: snapshots
-#          name: repo
-#          snapshots:
-#            enabled: True
-#          url: https://example.com/blah/plugins-snapshots
-#    - id: some-profile-id
-#      active: True
-#      properties:
-#        foo: bar
-#        bar: baz
-#        ding: bat
-#  toolchains:
-#    - ty: jdk
-#      provides:
-#        version: 1.8
-#        vendor: sun
-#      configuration:
-#        jdkHome: /usr/local/java
-#  servers:
-#    - id: server001
-#      username: my_login
-#      password: my_password
-#      privateKey: ${user.home}/.ssh/id_dsa
-#      passphrase: some_passphrase
-#      filePermissions: 664
-#      directoryPermissions: 775
+# maven_config:
+#   profiles:
+#     - id: profile-id
+#       active: True
+#       repos:
+#         - id: central
+#           name: repo
+#           snapshots:
+#             enabled: False
+#           url: https://example.com/blah/libs-releases
+#         - id: snapshots
+#           name: repo
+#           snapshots:
+#             enabled: True
+#           url: https://example.com/blah/lib-snapshots
+#       pluginRepos:
+#         - id: central
+#           name: repo
+#           snapshots:
+#             enabled: False
+#           url: https://example.com/blah/plugins-releases
+#         - id: snapshots
+#           name: repo
+#           snapshots:
+#             enabled: True
+#           url: https://example.com/blah/plugins-snapshots
+#     - id: some-profile-id
+#       active: True
+#       properties:
+#         foo: bar
+#         bar: baz
+#         ding: bat
+#   toolchains:
+#     - ty: jdk
+#       provides:
+#         version: 1.8
+#         vendor: sun
+#       configuration:
+#         jdkHome: /usr/local/java
+#   servers:
+#     - id: server001
+#       username: my_login
+#       password: my_password
+#       privateKey: ${user.home}/.ssh/id_dsa
+#       passphrase: some_passphrase
+#       filePermissions: 664
+#       directoryPermissions: 775
 
 maven_checksums:
   # http://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz.sha256
