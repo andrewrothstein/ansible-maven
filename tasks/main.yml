@@ -1,12 +1,4 @@
 ---
-- name: Installing andrewrothstein.unarchivedeps
-  ansible.builtin.include_role:
-    name: andrewrothstein.unarchivedeps
-- name: Installing andrewrothstein.temurin
-  ansible.builtin.include_role:
-    name: andrewrothstein.temurin
-  vars:
-    openjdk_app: jdk
 - name: Look for maven installation in {{ maven_install_dir }}...
   become: true
   ansible.builtin.stat:
@@ -16,6 +8,11 @@
 - name: Downloading and installing maven
   when: not maven_binary.stat.exists
   block:
+    - name: Installing andrewrothstein.temurin
+      ansible.builtin.include_role:
+        name: andrewrothstein.temurin
+      vars:
+        temurin_app: jdk
     - name: Downloading {{ maven_tgz_url }} to {{ maven_tmp_tgz }}...
       become: true
       become_user: root
@@ -25,6 +22,9 @@
         checksum: '{{ maven_checksum }}'
         timeout: '{{ maven_timeout_seconds | default(60) }}'
         mode: '644'
+    - name: Installing andrewrothstein.unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
     - name: Unarchiving {{ maven_tmp_tgz }} to {{ maven_parent_install_dir }}...
       become: true
       become_user: root
